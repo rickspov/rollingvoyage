@@ -1,58 +1,50 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { Link } from "react-router";
+import { ArrowRight } from "lucide-react";
 
-import { cn } from "./utils";
+type ButtonProps = {
+  children: React.ReactNode;
+  to?: string;
+  onClick?: () => void;
+  variant?: "primary" | "outline" | "ghost";
+  className?: string;
+  type?: "button" | "submit";
+  disabled?: boolean;
+};
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background text-foreground hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9 rounded-md",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  },
-);
+const variants = {
+  primary:
+    "bg-primary text-primary-foreground hover:bg-[#1f3550] border border-primary",
+  outline:
+    "bg-transparent text-primary border border-primary/30 hover:bg-primary/5",
+  ghost: "bg-transparent text-primary hover:bg-primary/5 border border-transparent",
+};
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
-  const Comp = asChild ? Slot : "button";
+export function Button({
+  children,
+  to,
+  onClick,
+  variant = "primary",
+  className = "",
+  type = "button",
+  disabled = false,
+}: ButtonProps) {
+  const classes = `inline-flex items-center justify-center gap-2 min-h-[44px] px-6 py-3 text-sm tracking-wide font-[family-name:var(--font-ui)] font-semibold transition-all duration-300 ease-out hover:opacity-90 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60 ${variants[variant]} ${className}`;
+
+  if (to) {
+    return (
+      <Link to={to} className={classes}>
+        {children}
+        <ArrowRight size={16} strokeWidth={1.5} />
+      </Link>
+    );
+  }
 
   return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
+    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
+      {children}
+      {type !== "submit" && variant !== "ghost" && (
+        <ArrowRight size={16} strokeWidth={1.5} />
+      )}
+    </button>
   );
 }
-
-export { Button, buttonVariants };

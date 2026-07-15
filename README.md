@@ -1,11 +1,37 @@
+# Rolling Voyage
 
-  # Travel Booking Advisor
+Sitio web de travel advisor para Rolling Voyage — demo v1.
 
-  This is a code bundle for Travel Booking Advisor. The original project is available at https://www.figma.com/design/qwFcsWKOlvneIhmQKXeYYM/Travel-Booking-Advisor.
+## Stack
 
-  ## Running the code
+- React 18 + Vite
+- React Router 7
+- Tailwind CSS 4
 
-  Run `npm i` to install the dependencies.
+## Desarrollo
 
-  Run `npm run dev` to start the development server.
-  
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Estructura
+
+- `src/app/pages/` — 5 páginas del roadmap
+- `src/app/data/content.ts` — copy en español (fuente: PDF)
+- `public/assets/brand/` — logos, hero, ilustraciones, guías
+- `Rolling Voyage Linea Grafica/` — assets originales de marca
+
+## Páginas
+
+1. `/` — Inicio
+2. `/enfoque` — Nuestro Enfoque
+3. `/que-esperar` — Customer journey + preview guía
+4. `/servicios` — Maneras de viajar
+5. `/contacto` — Empecemos

@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+
+# Local originals / backups (served assets live in public/)
+.banner-backups/
+Rolling Voyage Linea Grafica/
+*.pdf

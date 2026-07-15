@@ -1,1 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+/* Brand fonts from Manual de Marca Rolling Voyage
+ * Logo only: De Brunce + Aloe Vera (not used for UI copy)
+ * Complementary:
+ *   Baskerville Display → títulos y frases
+ *   Cairoli Now Regular → subtítulos
+ *   Stindle Script → acentos
+ *   DM Sans Light → cuerpo de texto
+ */
+
+@font-face {
+  font-family: "Baskerville Display";
+  src: local("Baskerville"), url("/fonts/Baskerville.ttc") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baskerville Display";
+  src: local("Baskerville Italic"), url("/fonts/Baskerville.ttc") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cairoli Now";
+  src: url("/fonts/CairoliNowExtended-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans Brand";
+  src: url("/fonts/DMSans_18pt-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans Brand";
+  src: url("/fonts/DMSans_18pt-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stindle Script";
+  src: url("/fonts/StindleScriptDemo-MAx2P.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback stack via Google Fonts for browsers that can't load .ttc */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
