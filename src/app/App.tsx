@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router";
 import { LanguageProvider } from "./i18n/context";
 import { Layout } from "./components/layout/Layout";
 import { HomePage } from "./pages/HomePage";
@@ -27,6 +27,8 @@ const router = createBrowserRouter([
       { path: "contact", element: <ContactoPage /> },
       { path: "terms", element: <TermsPage /> },
       { path: "privacy", element: <PrivacyPage /> },
+      // Unknown paths → home (avoids React Router's default 404 screen)
+      { path: "*", element: <Navigate to="/" replace /> },
     ],
   },
 ]);

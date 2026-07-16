@@ -10,3 +10,4 @@ dist
 .banner-backups/
 Rolling Voyage Linea Grafica/
 *.pdf
+!public/assets/banners/legal/*.pdf
