@@ -56,7 +56,7 @@ Our mission is to guide every traveler in crafting authentic, tailored experienc
     guide: {
       title: "A keepsake for the road",
       body: "A preview of what every traveler receives — created for each unique journey.",
-      cta: "See what awaits you",
+      cta: "Take a closer look",
     },
     testimonials: {
       title: "In their words",
