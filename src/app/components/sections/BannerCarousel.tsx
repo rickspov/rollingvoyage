@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "../../i18n/context";
 import { bannerSrc, type BannerKey } from "../../data/banners";
 
+const MOBILE_MQ = "(max-width: 767px)";
+
 type BannerCarouselProps = {
   banners: BannerKey[];
   alt?: string;
@@ -13,6 +15,18 @@ export function BannerCarousel({ banners, alt = "" }: BannerCarouselProps) {
   const { locale, t } = useLanguage();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.matchMedia(MOBILE_MQ).matches;
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ);
+    const onChange = () => setIsMobile(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -27,25 +41,27 @@ export function BannerCarousel({ banners, alt = "" }: BannerCarouselProps) {
     };
   }, [emblaApi]);
 
+  const device = isMobile ? "mobile" : "desktop";
+
   return (
     <div className="relative bg-primary">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {banners.map((key) => (
-            <div key={key} className="flex-[0_0_100%] min-w-0">
-              <picture>
-                <source media="(max-width: 767px)" srcSet={bannerSrc(locale, key, "mobile")} />
-                <source media="(min-width: 768px)" srcSet={bannerSrc(locale, key, "desktop")} />
+          {banners.map((key) => {
+            const src = bannerSrc(locale, key, device);
+            return (
+              <div key={`${key}-${device}`} className="flex-[0_0_100%] min-w-0">
                 <img
-                  src={bannerSrc(locale, key, "mobile")}
+                  key={src}
+                  src={src}
                   alt={alt}
                   className="w-full h-auto block"
                   loading="lazy"
                   decoding="async"
                 />
-              </picture>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
 

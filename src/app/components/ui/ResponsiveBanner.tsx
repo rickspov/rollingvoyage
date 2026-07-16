@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useLanguage } from "../../i18n/context";
 import { bannerSrc, type BannerKey } from "../../data/banners";
 import { SectionCta } from "./SectionCta";
+
+const MOBILE_MQ = "(max-width: 767px)";
+
+function useIsMobileBanner() {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.matchMedia(MOBILE_MQ).matches;
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ);
+    const onChange = () => setIsMobile(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  return isMobile;
+}
 
 type ResponsiveBannerProps = {
   banner: BannerKey;
@@ -30,22 +50,19 @@ export function ResponsiveBanner({
   cta,
 }: ResponsiveBannerProps) {
   const { locale } = useLanguage();
-  const desktop = bannerSrc(locale, banner, "desktop");
-  const mobile = bannerSrc(locale, banner, "mobile");
+  const isMobile = useIsMobileBanner();
+  const src = bannerSrc(locale, banner, isMobile ? "mobile" : "desktop");
 
   const image = (
-    <picture>
-      <source media="(max-width: 767px)" srcSet={mobile} />
-      <source media="(min-width: 768px)" srcSet={desktop} />
-      <img
-        src={mobile}
-        alt={alt}
-        className={`w-full h-auto block ${className}`}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        fetchPriority={priority ? "high" : "auto"}
-      />
-    </picture>
+    <img
+      key={src}
+      src={src}
+      alt={alt}
+      className={`w-full h-auto block ${className}`}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      fetchPriority={priority ? "high" : "auto"}
+    />
   );
 
   const framed = cta ? (
