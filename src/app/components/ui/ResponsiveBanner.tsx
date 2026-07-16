@@ -35,6 +35,7 @@ export function ResponsiveBanner({
 
   const image = (
     <picture>
+      <source media="(max-width: 767px)" srcSet={mobile} />
       <source media="(min-width: 768px)" srcSet={desktop} />
       <img
         src={mobile}

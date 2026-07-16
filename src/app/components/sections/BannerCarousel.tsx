@@ -34,6 +34,7 @@ export function BannerCarousel({ banners, alt = "" }: BannerCarouselProps) {
           {banners.map((key) => (
             <div key={key} className="flex-[0_0_100%] min-w-0">
               <picture>
+                <source media="(max-width: 767px)" srcSet={bannerSrc(locale, key, "mobile")} />
                 <source media="(min-width: 768px)" srcSet={bannerSrc(locale, key, "desktop")} />
                 <img
                   src={bannerSrc(locale, key, "mobile")}
