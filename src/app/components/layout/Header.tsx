@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
-import { useLanguage, useNavItems, routes } from "../../i18n/context";
+import { useLanguage, useNavItems, useRoutes } from "../../i18n/context";
 import { LanguageToggle } from "../ui/LanguageToggle";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -12,6 +12,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { t } = useLanguage();
+  const routes = useRoutes();
   const navItems = useNavItems();
 
   useEffect(() => {

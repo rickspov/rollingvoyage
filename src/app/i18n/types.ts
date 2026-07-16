@@ -11,6 +11,9 @@ export type Content = {
     privacyUrl: string;
     foraAffiliate: string;
     foraProfileLabel: string;
+    emailLabel: string;
+    instagramLabel: string;
+    copyright: string;
     termsLabel: string;
     privacyLabel: string;
   };

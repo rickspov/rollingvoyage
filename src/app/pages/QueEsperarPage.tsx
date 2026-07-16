@@ -1,15 +1,14 @@
-import { routes, useLanguage } from "../i18n/context";
+import { useLanguage, useRoutes } from "../i18n/context";
 import { ResponsiveBanner } from "../components/ui/ResponsiveBanner";
 
 export function QueEsperarPage() {
   const { t } = useLanguage();
+  const routes = useRoutes();
 
   return (
     <div>
-      {/* 3.1 Process timeline — no button in PDF */}
       <ResponsiveBanner banner="process" priority alt="" />
 
-      {/* 3.2 Guide — Encuentra tu manera de viajar → /servicios */}
       <ResponsiveBanner
         banner="guidePreview"
         alt=""

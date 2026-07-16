@@ -29,8 +29,8 @@ export function SectionCta({
         <div className="pointer-events-auto">
           <Button
             to={to}
-            variant="outline"
-            className="!bg-background/95 !text-primary !border-primary/25 shadow-sm backdrop-blur-sm hover:!bg-background"
+            variant="primary"
+            className="!rounded-full !bg-[#29466c] !border-[#29466c] !text-white !font-light hover:!bg-[#1f3550] hover:!opacity-100 shadow-sm"
           >
             {label}
           </Button>

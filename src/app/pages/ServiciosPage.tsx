@@ -1,8 +1,9 @@
-import { routes, useLanguage } from "../i18n/context";
+import { useLanguage, useRoutes } from "../i18n/context";
 import { ResponsiveBanner } from "../components/ui/ResponsiveBanner";
 
 export function ServiciosPage() {
   const { t } = useLanguage();
+  const routes = useRoutes();
 
   return (
     <div>

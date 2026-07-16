@@ -13,12 +13,20 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
+      // Spanish
       { path: "enfoque", element: <EnfoquePage /> },
       { path: "que-esperar", element: <QueEsperarPage /> },
       { path: "servicios", element: <ServiciosPage /> },
       { path: "contacto", element: <ContactoPage /> },
       { path: "terminos", element: <TermsPage /> },
       { path: "privacidad", element: <PrivacyPage /> },
+      // English
+      { path: "approach", element: <EnfoquePage /> },
+      { path: "what-to-expect", element: <QueEsperarPage /> },
+      { path: "ways-to-travel", element: <ServiciosPage /> },
+      { path: "contact", element: <ContactoPage /> },
+      { path: "terms", element: <TermsPage /> },
+      { path: "privacy", element: <PrivacyPage /> },
     ],
   },
 ]);
